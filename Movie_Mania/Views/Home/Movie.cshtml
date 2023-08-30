@@ -1,0 +1,183 @@
+﻿
+
+@model IEnumerable<Movie_Mania.Resources.MovieResources>
+
+@{
+    ViewBag.Title = "Movie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (ViewBag.Highrate.Count != 0)
+{
+
+
+
+    <section id="center" class="center_home">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2" class="" aria-current="true"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                @for (var i = 0; i < ViewBag.Highrate.Count; i++)
+                {
+                    var description = ViewBag.Highrate[i].Description.Length > 200
+                    ? ViewBag.Highrate[i].Description.Substring(0, 200) + "..."
+                    : ViewBag.Highrate[i].Description;
+
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="@ViewBag.Highrate[i].ImagePath" class="d-block w-100" alt="..." style="height:800px">
+                            <div class="carousel-caption d-md-block text-start" style="padding-top:100px">
+                                <h1 class="font_60">@ViewBag.Highrate[i].Name</h1>
+                                <h6 class="mt-3">
+                                    <span class="col_red me-3">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                    5.0 (Imdb)      Year: @ViewBag.Highrate[i].ReleaseDate.Year
+                                    @foreach (var genre in ViewBag.Highrate[i].SelectedGenres)
+                                    {
+
+                                        <a class="bg_red p-2 pe-4 ps-4 ms-3 text-white d-inline-block" href="@Url.Action("Movie_Genre", "Home", new {genreName=genre.name})" style="text-decoration:none">@genre.name</a>
+                                    }
+                                </h6>
+
+                                <p class="mt-3">@description </p>
+                                <h6 class="mt-4 mb-0"><a class="button text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal@(i)"><i class="fa fa-play-circle align-middle me-1 "></i> Watch Trailer</a></h6>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal fade " id="exampleModal@(i)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-dark" id="exampleModalLabel"><i class="fa fa-youtube-play align-middle col_red me-1"></i> Watch <span class="col_red">@ViewBag.Highrate[i].Name</span> Trailer</h5>
+                                    <a class="btn-close " data-bs-dismiss="modal" aria-label="Close" onclick="location.reload()"></a>
+                                </div>
+                                <div class="modal-body">
+                                    <p><iframe style="height:500px;width:1100px" class="d-block " src="@ViewBag.Highrate[i].VideoPath" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
+
+    </section>
+}
+<section id="trend" class="pt-4 pb-5" style="background-color:#010102">
+    <div class="container">
+        <div class="row trend_1">
+            <div class="col-md-6 col-6">
+                <div class="trend_1l">
+                    <h4 class="mb-0 text-white"><i class="fa fa-youtube-play align-middle col_red me-1"></i> Latest <span class="col_red">Movies</span></h4>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row trend_2 mt-4">
+            <div id="carouselExampleCaptions1" class="carousel slide" data-bs-ride="carousel">
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="trend_2i row">
+                            @if (ViewBag.UserRole == "Admin")
+                            {
+                                <div class="row trend_1">
+
+                                    <div class="col-md-6 col-6">
+                                        <div class="trend_1l">
+                                            <a href="@Url.Action("AddMovie","Movie")" class="btn btn-block text-white " style="background-color:#191A1D"><i class="fa fa-thin fa-plus align-middle col_red me-1"></i> Add <span class="col_red">Movie</span></a>
+                                            <a href="@Url.Action("MovieList","Movie")" class="btn btn-block text-white " style="background-color:#191A1D"><i class="fa fa-thin fa-list align-middle col_red me-1"></i> View <span class="col_red">List</span></a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            }
+                            @foreach (var item in Model)
+                            {
+                                var description = @item.Description.Length > 153
+                 ? @item.Description.Substring(0, 153) + "..."
+                 : @item.Description;
+                <div class="col-md-3 col-6">
+                    <div class="trend_2im clearfix position-relative">
+                        <div class="trend_2im1 clearfix">
+                            <div class="grid">
+                                <figure class="effect-jazz mb-0">
+                                    <a href="@Url.Action("MovieDetails", "Home", new { slug=item.Slug })"><img src="@item.ImagePath" class="w-100" alt="img25" style="width:270px;height:300px"></a>
+                                </figure>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="trend_2ilast bg_grey p-3 clearfix h-100">
+                        <h5><a class="col_red text-decoration-none" href="@Url.Action("MovieDetails", "Home", new { slug=item.Slug })">@item.Name</a></h5>
+                        <p class="mb-2">@description</p>
+
+
+                        <p class="mb-0">
+                            ₦@item.TicketPrice
+                        </p>
+                    </div>
+                </div>
+            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<nav aria-label="Page navigation example" style="padding-top:20px">
+    <ul class="pagination justify-content-center ">
+        <li class="page-item">
+            <a class="page-link" href="@Url.Action("Movie", "Home", new {page=ViewBag.CurrentPage-1})" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item "><a class="page-link" style="@(i==ViewBag.CurrentPage?"color:#191A1D;background-color:#DE1002":"color:#191A1D")" href="@Url.Action("Movie", "Home", new {page=i})">@i</a></li>
+        }
+
+        <li class="page-item">
+            <a class="page-link" href="@Url.Action("Movie", "Home", new {page=ViewBag.CurrentPage+1})" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+
+    </ul>
+
+</nav>

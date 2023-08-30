@@ -1,0 +1,145 @@
+﻿@model Movie_Mania.Resources.SeriesResources
+
+@{
+    ViewBag.Title = "AddSeries";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+@using (Html.BeginForm("AddSeries", "Movie", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="page-header" style="padding-left:50px">
+
+        <div class="page-title">
+            <h4>ADD Series</h4>
+            <h6>Create new Series</h6>
+        </div>
+    </div>
+    <br />
+    <div class="card" style="padding-left:20px">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>TvShow</label>
+
+                    </div>
+
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { style = "color: black" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Release Date</label>
+                    </div>
+                    @Html.EditorFor(model => model.ReleaseDate, new { htmlAttributes = new { style = "color: black" } })
+                    @Html.ValidationMessageFor(model => model.ReleaseDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Ticket Price</label>
+                    </div>
+                    @Html.EditorFor(model => model.TicketPrice, new { htmlAttributes = new { style = "color: black" } })
+                    @Html.ValidationMessageFor(model => model.TicketPrice, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Country</label>
+                    </div>
+                    @Html.EditorFor(model => model.Country, new { htmlAttributes = new { style = "color: black" } })
+                    @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br />
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Seasons</label>
+                    </div>
+                    @Html.EditorFor(model => model.NumberOfSeasons, new { htmlAttributes = new { style = "color: black" } })
+                    @Html.ValidationMessageFor(model => model.NumberOfSeasons, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <div>
+                            <label>Image</label>
+                        </div>
+                        <div class="image-upload">
+
+                            @Html.TextBoxFor(model => model.Image, new { type = "file" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6 col-12">
+
+                    <div class="form-group">
+                        <div style="display:flex">
+                            <label> Video url</label>
+                        </div>
+                        <div>
+
+                            @Html.TextBoxFor(model => model.VideoPath, new { placeholder = "Paste Url..." })
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <div class="form-group">
+                        <label>Genres</label>
+                    </div>
+                    <div class="card" style="border: 1px solid #ccc; border-radius: 0.25rem;">
+                        <div class="card-body d-flex flex-wrap gap-sm-5">
+                            @for (int i = 0; i < Model.SeriesSelectedGenresresource.Count(); i++)
+                            {
+                                <div class="form-check" style="margin-bottom: 0.5rem;">
+                                    @Html.EditorFor(model => model.SeriesSelectedGenresresource[i].Selected, new { htmlAttributes = new { @class = "form-check-input", style = "margin-right: 0.25rem;", id = $"SelectedGenres_{i}_Selected" } })
+                                    <label class="form-check-label" for="@($"SelectedGenres_{i}_Selected")" style="margin-left: 0.5rem; font-weight: normal;">
+                                        @Html.HiddenFor(model => model.SeriesSelectedGenresresource[i].genreid)
+                                        @Html.HiddenFor(model => model.SeriesSelectedGenresresource[i].name)
+                                        @Html.DisplayFor(model => model.SeriesSelectedGenresresource[i].name, new { style = "margin-left: 0.5rem;" })
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.SeriesSelectedGenresresource, "", new { @class = "text-danger", style = "margin-top: 0.5rem;" })
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Description</label>
+                    </div>
+                    @Html.TextAreaFor(model => model.Description, new { rows = 5, cols = 50 })
+
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div style="text-align: center;">
+            <input type="submit" class="text-white" value="Submit" style="background-color:#DE1002" />
+            <a href="@Url.Action("SeriesList", "Movie")" class="hover-a" style="color:#DE1002;text-decoration:none">Cancel</a>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

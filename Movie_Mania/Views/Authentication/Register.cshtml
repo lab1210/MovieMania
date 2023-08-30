@@ -1,0 +1,78 @@
+﻿@model Movie_Mania.Models.Registers
+@{
+    ViewBag.Title = "Register";
+    Layout = "../Shared/_LayoutAuth.cshtml";
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="width: 400px; height: 400px; background-color: black; display: flex; justify-content: center; align-items: center; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); ">
+        <div>
+            <div style="text-align: center;">
+                
+                <a href="@Url.Action("Movie", "Home")">
+                    <img src="~/Content/images/logo.png" alt="" style="height:20px" />
+                </a>
+            </div>
+            <div style="text-align: center;">
+                <h3>Create an Account</h3>
+            </div>
+            <div>
+                <div class="form-login">
+                    <label>Username</label>
+                    <div class="form-addons">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { style = "color: navy", placeholder = "Enter your User name" } })
+                        <img src="~/Content/icons/users1.svg" alt="img"><br />
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-login">
+                    <label>Email</label>
+                    <div class="form-addons">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { style = "color: navy", placeholder = "Enter your email address" } })
+                        <img src="~/Content/icons/mail.svg" alt="img"><br />
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-login">
+                    <label>Password</label>
+                    <div>
+                        <input type="password" id="password-input" name="Password" style="color: navy" placeholder="Enter your password" />
+                        <span onclick="togglePasswordVisibility()" class="fa toggle-password fa-eye-slash" id="toggle-icon"></span><br />
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div style="text-align: center;">
+                    <input type="submit" value="Sign Up" style="color:blue" />
+                </div>
+                <div style="text-align: center;">
+                    <h6>Already a user? <a href="@Url.Action("Login", "Authentication")" class="hover-a">Sign In</a></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById('password-input');
+        var toggleIcon = document.getElementById('toggle-icon');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        }
+    }
+</script>

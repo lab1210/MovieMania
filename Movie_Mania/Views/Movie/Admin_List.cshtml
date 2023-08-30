@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Movie_Mania.Models.Registers>
+
+@{
+    ViewBag.Title = "Admin_List";
+    Layout = "../Shared/_LayoutAdmin.cshtml";
+
+}
+
+<div class="page-btn">
+    <a href="@Url.Action("Create_Admin","Movie")" class="btn btn-added" style="color:white"><img src="~/Content/icons/plus.svg" class="me-2" alt="img">Add Admin</a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+
+
+        <div class="table-responsive">
+            <table class="table datanew " style="text-decoration-color:black">
+                <thead>
+                    <tr>
+                        <th>
+                            <label class="checkboxs">
+                                <input type="checkbox" id="select-all">
+                                <span class="checkmarks"></span>
+                            </label>
+                        </th>
+                        <th>UserName</th>
+                        <th>Email</th>
+
+
+
+
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <label class="checkboxs">
+                                    <input type="checkbox">
+                                    <span class="checkmarks"></span>
+                                </label>
+                            </td>
+
+
+                            <td> @Html.DisplayFor(modelitem => item.UserName)</td>
+                            <td> @Html.DisplayFor(modelitem => item.Email)</td>
+
+
+
+
+
+
+
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

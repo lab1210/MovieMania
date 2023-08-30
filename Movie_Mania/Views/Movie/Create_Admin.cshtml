@@ -1,0 +1,61 @@
+﻿@model Movie_Mania.Models.Registers
+
+@{
+    ViewBag.Title = "Create_Admin";
+    Layout = "../Shared/_LayoutAdmin.cshtml";
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <br />
+  
+    <div class="container">
+        <h4>Add a New Admin</h4>
+        <form>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3 mb-md-0">
+                        @Html.EditorFor(c => c.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Name" } })
+                        @Html.ValidationMessageFor(c => c.UserName, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3 mb-md-0">
+                        @Html.EditorFor(c => c.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Email" } })
+                        @Html.ValidationMessageFor(c => c.Email, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="form-floating mb-3 mb-md-0" style="display:flex">
+                        <input type="password" id="password-input" name="Password" placeholder="Create a password" class="form-control" />
+                        <span onclick="togglePasswordVisibility()" class="fa toggle-password  fa-eye-slash " id="toggle-icon" style="padding-top:30px"></span><br />
+
+                        @Html.ValidationMessageFor(c => c.Password, "", new { @class = "text-danger" })
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="">
+                <input type="submit" value="Add Admin" class="btn text-white"style="background-color:#DE1002" />
+            </div>
+
+        </form>
+    </div>
+
+    
+}
+

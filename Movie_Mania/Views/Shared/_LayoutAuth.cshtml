@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Mania | Your Ultimate Destination for Film Reviews, Trailers, and More!</title>
+
+    <link rel="icon" type="image/x-icon" href="~/Content/images/camcorder_7982997.png" />
+
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+    <div class="container" style="margin-left:0">
+
+
+
+
+
+        @RenderBody()
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryDataTables")
+    @Scripts.Render("~/bundles/dataTablesBootstrap")
+    @Scripts.Render("~/bundles/Feather")
+    @Scripts.Render("~/bundles/script")
+    @Scripts.Render("~/bundles/FontAwesome")
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Mania | Your Ultimate Destination for Film Reviews, Trailers, and More!</title>
+    <link rel="icon" type="image/x-icon" href="~/Content/images/camcorder_7982997.png" />
+
+    @Styles.Render("~/Content/Movie")
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <section id="top">
+        @Html.Partial("_Top")
+    </section>
+
+    <section id="header">
+        @Html.Partial("_Header")
+
+    </section>
+    @RenderBody()
+
+
+    <section id="footer_b" class="pt-3 pb-3 bg_grey">
+        <div class="container">
+            <div class="row footer_1">
+                <div class="col-md-8">
+                    <div class="footer_1l">
+                        <p class="mb-0">© 2023 Planet. All Rights Reserved | Design by <a class="col_red" href="http://www.templateonweb.com">TemplateOnWeb</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+@*    @Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/index")
+    @RenderSection("Scripts", required: false)
+
+
+</body>
+
+</html>

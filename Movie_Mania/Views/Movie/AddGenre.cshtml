@@ -1,0 +1,49 @@
+﻿@model Movie_Mania.Models.Genre
+@{
+    ViewBag.Title = "AddGenre";
+    Layout = "../Shared/_LayoutAdmin.cshtml";
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="page-header" style="padding-left:40px">
+
+        <div class="page-title">
+            <h4>ADD Genre</h4>
+            <h6>Create new Genre</h6>
+        </div>
+    </div>
+    <div class="card" style="padding-left:20px">
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label>Genre</label>
+                    </div>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { style = "color: black" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <br />
+                <div class="col-lg-3 col-sm-6 col-12">
+
+                    <div style="text-align: left;">
+                        <input type="submit" class="text-white" value="Submit" style="background-color:#DE1002" />
+
+                        <a href="@Url.Action("GenreList", "Movie")" class="hover-a" style="color: #DE1002;text-decoration:none">Cancel</a>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
