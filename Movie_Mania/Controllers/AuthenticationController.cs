@@ -36,7 +36,7 @@ namespace Movie_Mania.Controllers
                 {
                     loginService.CheckUser(login);
                     
-                    return RedirectToAction("TvSeries", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 catch(Exception ex)
                 {
@@ -79,7 +79,7 @@ namespace Movie_Mania.Controllers
         public ActionResult LogOut()
         {
             loginService.clearLoginName();
-            return RedirectToAction("TvSeries", "Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

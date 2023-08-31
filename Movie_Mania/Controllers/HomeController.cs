@@ -78,7 +78,7 @@ namespace Movie_Mania.Controllers
             ViewBag.name = genreName;
             return View(movies);
         }
-        public ActionResult TVSeries(int?page,string searchname="")
+        public ActionResult Index(int?page,string searchname="")
         {
             ViewBag.genre = seriesService.GetGenres();
             ViewBag.country = seriesService.GetCountry();
