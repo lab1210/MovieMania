@@ -3,11 +3,11 @@
     <div class="row top_1">
         <div class="col-md-3">
             <div class="top_1l pt-1">
-                <h3 class="mb-0"><a class="text-white" style="text-decoration:none" href="@Url.Action("TvSeries", "Home")"><i class="fa fa-video-camera col_red me-1"></i> Movie Mania</a></h3>
+                <h3 class="mb-0"><a class="text-white" style="text-decoration:none" href="@Url.Action("Index", "Home")"><i class="fa fa-video-camera col_red me-1"></i> Movie Mania</a></h3>
             </div>
         </div>
         <div class="col-md-5">
-            @using (Html.BeginForm("TVSeries", "Home", FormMethod.Get))
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
             {
                 <div class="top_1m">
                     <div class="input-group">

@@ -71,17 +71,17 @@
 <nav aria-label="Page navigation example" style="padding-top:20px">
     <ul class="pagination justify-content-center ">
         <li class="page-item">
-            <a class="page-link" href="@Url.Action("TvSeries", "Home", new {page=ViewBag.CurrentPage-1})" aria-label="Previous">
+            <a class="page-link" href="@Url.Action("Index", "Home", new {page=ViewBag.CurrentPage-1})" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only">Previous</span>
             </a>
         </li>
         @for (int i = 1; i <= ViewBag.TotalPages; i++)
         {
-            <li class="page-item "><a class="page-link" style="@(i==ViewBag.CurrentPage?"color:#191A1D;background-color:#DE1002":"color:#191A1D")" href="@Url.Action("TvSeries", "Home", new {page=i})">@i</a></li>
+            <li class="page-item "><a class="page-link" style="@(i==ViewBag.CurrentPage?"color:#191A1D;background-color:#DE1002":"color:#191A1D")" href="@Url.Action("Index", "Home", new {page=i})">@i</a></li>
         }
         <li class="page-item">
-            <a class="page-link" href="@Url.Action("TvSeries", "Home", new {page=ViewBag.CurrentPage+1})" aria-label="Next">
+            <a class="page-link" href="@Url.Action("Index", "Home", new {page=ViewBag.CurrentPage+1})" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>
             </a>

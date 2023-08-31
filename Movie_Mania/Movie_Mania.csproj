@@ -374,7 +374,7 @@
     <Content Include="Views\Home\Movie_Genre.cshtml" />
     <Content Include="Views\Home\SeriesDetails.cshtml" />
     <Content Include="Views\Home\Series_Genre.cshtml" />
-    <Content Include="Views\Home\TVSeries.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movie\AddGenre.cshtml" />
     <Content Include="Views\Movie\AddMovie.cshtml" />
     <Content Include="Views\Movie\AddSeries.cshtml" />
